@@ -51,6 +51,10 @@ namespace irods_Csharp
                 case "pam":
                     secret = _connection.Pam(password);
                     break;
+                case "plaintext":
+                    secret = password;
+
+                    break;
                 default:
                     throw new Exception("Authentication method not implemented.");
             }
