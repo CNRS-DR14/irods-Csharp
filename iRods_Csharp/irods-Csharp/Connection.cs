@@ -51,10 +51,17 @@ namespace irods_Csharp
         /// </summary>
         public void Dispose()
         {
-            Packet<None> disconnectRequest = new Packet<None>(type: MessageType.DISCONNECT);
-            SendPacket(disconnectRequest);
+            SendDisconnect();
 
             _serverStream.Dispose();
+        }
+
+        public void SendDisconnect()
+        {
+            WriteLog(ConsoleColor.DarkGray, "Disconnecting");
+            Packet<None> disconnectRequest = new Packet<None>(type: MessageType.DISCONNECT);
+            if(this._serverStream!=null)    {SendPacket(disconnectRequest);}
+            
         }
 
         /// <summary>
